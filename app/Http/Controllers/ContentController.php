@@ -21,58 +21,31 @@ class ContentController extends Controller
 
     public function store(Request $request)
     {
-                // $files  = $request->image;
-                // dd($files);
-
         $request->validate([
             'title' => 'required',
             'desc' => 'required',
-            'image' => 'image:jpeg,png,jpg|max:2048'
+            'image.*' => 'image:jpeg,png,jpg'
         ]);
-            $contents               = new Content();
-            $contents->category_id  = $request->category_id;
-            $contents->title        = $request->title;
-            $contents->desc         = $request->desc;
-            $contents->save();
-            // $contents = Content::create($data);
+        $contents               = new Content();
+        $contents->category_id  = $request->category_id;
+        $contents->title        = $request->title;
+        $contents->desc         = $request->desc;
+        $contents->save();
 
-            if($request->hasFile('image'))
-            {
-                // $file_image  = $request->image;
-                // $fileimage   = $file_image->getClientOriginalExtension();
-                // $nama_image = date('YmdHis').".$fileimage";
-                // $upload_path = 'images';
-                // $file_image->move($upload_path, $nama_image);
+        if ($request->hasFile('image')) {
 
-                // $files  = $request->image;
-                // dd($files);
-                // foreach($files as $file)
-                // foreach($request->file('image') as $file)
-                foreach($request['image'] as $file)
-                {
-                    $fileimage   = $file->getClientOriginalExtension();
-                    $nama_image = date('YmdHis').".$fileimage";
-                    $upload_path = 'images';
-                    $file->move($upload_path, $nama_image);
-                    // $image[] = $nama_image;
+            foreach ($request['image'] as $file) {
+                $fileimage   = $file->getClientOriginalExtension();
+                $nama_image = date('YmdHis') . ".$fileimage";
+                $upload_path = 'images';
+                $file->move($upload_path, $nama_image);
 
-                    $file = new File();
-                    $file->content_id = $contents->id;
-                    $file->image = $nama_image;
-                    $file->save();
-
-                    // File::create([
-                    //     'content_id' => $contents->id,
-                    //     'image' => $nama_image
-                    // ]);
-
-                }
-                // $file = new File();
-                // $file->content_id = $contents->id;
-                // $file->image = $nama_image;
-                // $file->save();
-                // dd($request->all());
+                $file = new File();
+                $file->content_id = $contents->id;
+                $file->image = $nama_image;
+                $file->save();
             }
+        }
 
         return redirect('contents/index');
     }
@@ -85,30 +58,30 @@ class ContentController extends Controller
             // 'image' => 'image:jpeg,png,jpg|max:2048'
         ]);
         // if($request->hasFile('file_image'))
-        if($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
 
             $file_image  = $request->image;
             $fileimage   = $file_image->getClientOriginalExtension();
-            $nama_image = date('YmdHis').".$fileimage";
+            $nama_image = date('YmdHis') . ".$fileimage";
             $upload_path = 'images';
-            $file_image->move($upload_path, $nama_image);e;
+            $file_image->move($upload_path, $nama_image);
+            e;
             // $files->update();
             $contents = Content::where('id', $request->id)->first();
             Content::where('id', $request->id)
-            ->update([
-                'category_id' => $request->category_id,
-                'title' => $request->title,
-                'desc' => $request->desc,
-            ]);
+                ->update([
+                    'category_id' => $request->category_id,
+                    'title' => $request->title,
+                    'desc' => $request->desc,
+                ]);
 
             File::where('content_id', $contents->id)
-            ->update([
-                'content_id' => $contents->id,
-                'image' => $nama_image
-            ]);
+                ->update([
+                    'content_id' => $contents->id,
+                    'image' => $nama_image
+                ]);
             return redirect('contents/index');
-        }else{
+        } else {
             // $contents = Content::where('id', $request->id)->first();
 
             // $contents = new Content();
@@ -118,10 +91,10 @@ class ContentController extends Controller
             // $contents->update();
 
             Content::where('id', $request->id)
-            ->update([
-                'title' => $request->title,
-                'desc' => $request->desc,
-            ]);
+                ->update([
+                    'title' => $request->title,
+                    'desc' => $request->desc,
+                ]);
             return redirect('contents/index');
         }
     }

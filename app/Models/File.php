@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     use HasFactory;
-    // protected $guarded = [];
+    protected $guarded = [];
 
     protected $fillable = ['content_id', 'image'];
 

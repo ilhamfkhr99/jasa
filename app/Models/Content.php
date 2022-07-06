@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     use HasFactory;
-    // protected $guarded = [];
+    protected $guarded = [];
 
     protected $fillable = ['category_id', 'title', 'desc'];
 
