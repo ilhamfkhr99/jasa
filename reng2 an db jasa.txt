@@ -1,0 +1,24 @@
+Table User
+-id 
+-name
+-email
+-email_verified_at
+-password
+
+table categories
+-id
+-name
+
+table contents
+-id
+-category_id
+-judul
+-deskripsi
+-gambar
+
+table messages
+-id
+-name
+-email
+-subjek
+-pesan
