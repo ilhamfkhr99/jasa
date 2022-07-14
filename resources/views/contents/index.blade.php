@@ -70,10 +70,7 @@
                             --}}
                             <td>
                                 @foreach ($row->file as $gambar)
-                                {{-- @php
-                                dd($row->file)
-                                @endphp --}}
-                                <a href="{{ url('images/'.$gambar->image) }}">{{ $gambar->image }}</a>
+                                <a href="{{ url('images/'.$gambar->image) }}">{{ $gambar->image }}</a><br>
                                 @endforeach
                             </td>
                             {{-- <td><img src="{{ url('images/'.$row->file->image) }}" class="card-img-top" width="10"
@@ -119,8 +116,7 @@
                                     <label for="first-name">Judul</label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" id="title" class="form-control" name="title"
-                                        value="{{ old('title') }}">
+                                    <input type="text" id="title" class="form-control" name="title" value="{{ old('title') }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -128,12 +124,11 @@
                                     <label for="first-name">Kategori</label>
                                 </div>
                                 <div class="col-sm-7">
-                                    {{-- <input type="text" id="title" class="form-control" name="title"
-                                        value="{{ old('title') }}"> --}}
+                                    {{-- <input type="text" id="title" class="form-control" name="title" value="{{ old('title') }}"> --}}
                                     <select name="category_id" id="category_id" class="form-control">
                                         <option>-Pilih Kategori</option>
                                         @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -145,15 +140,9 @@
                                     <label for="first-name">Gambar</label>
                                 </div>
                                 <div class="col-sm-7">
-                                    {{-- <input type="hidden" id="content_id" class="form-control" name="content_id"
-                                        value="{{ old('content_id') }}"> --}}
-                                    {{-- <input type="file" class="form-control" name="image[]" multiple
-                                        accept="image/*"> --}}
+                                    {{-- <input type="hidden" id="content_id" class="form-control" name="content_id" value="{{ old('content_id') }}"> --}}
+                                    {{-- <input type="file" class="form-control" name="image[]" multiple accept="image/*"> --}}
                                     <input type="file" class="form-control" name="image[]" multiple>
-                                    {{-- @php
-                                    dd($files);
-                                    @endphp --}}
-                                    {{-- <input type="file" class="form-control" name="image" multiple> --}}
                                 </div>
                             </div>
                         </div>
@@ -204,10 +193,8 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <input type="hidden" id="id" name="id" value="{{ $row->id }}">
-                                    {{-- <input type="hidden" id="content_id" name="content_id"
-                                        value="{{ $row->content_id }}"> --}}
-                                    <input type="text" id="title" class="form-control" name="title"
-                                        value="{{ $row->title }}">
+                                    {{-- <input type="hidden" id="content_id" name="content_id" value="{{ $row->content_id }}"> --}}
+                                    <input type="text" id="title" class="form-control" name="title" value="{{ $row->title }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -217,7 +204,7 @@
                                 <div class="col-sm-7">
                                     <select name="category_id" id="category_id" class="form-control">
                                         @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -229,14 +216,12 @@
                                     <label for="first-name">Gambar</label>
                                 </div>
                                 <div class="col-sm-7">
-                                    {{-- <input type="hidden" id="content_id" name="content_id"
-                                        value="{{ $row->file->content_id }}"> --}}
+                                    {{-- <input type="hidden" id="content_id" name="content_id" value="{{ $row->file->content_id }}"> --}}
+                                    {{-- @foreach ($row->file as $gambar) --}}
                                     @foreach ($row->file as $gambar)
-                                    <input type="file" id="image" class="form-control" name="image"
-                                        value="{{ $gambar->image }}" multiple>
+                                        {{-- <input type="hidden" class="form-control" name="id" value="{{ $gambar->id }}"> --}}
+                                        <input type="file" class="form-control" name="image[]" value="{{ $gambar->image }}" multiple><br>
                                     @endforeach
-                                    {{-- <input type="file" id="image" class="form-control" name="image"
-                                        value="{{ $row->file->image }}" multiple> --}}
                                 </div>
                             </div>
                         </div>

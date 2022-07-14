@@ -56,42 +56,37 @@ class ContentController extends Controller
             'title' => 'required',
             'desc' => 'required',
             // 'image' => 'image:jpeg,png,jpg|max:2048'
+            'image.*' => 'image:jpeg,png,jpg'
         ]);
         // if($request->hasFile('file_image'))
         if ($request->hasFile('image')) {
-
-            $file_image  = $request->image;
-            $fileimage   = $file_image->getClientOriginalExtension();
-            $nama_image = date('YmdHis') . ".$fileimage";
-            $upload_path = 'images';
-            $file_image->move($upload_path, $nama_image);
-            e;
-            // $files->update();
             $contents = Content::where('id', $request->id)->first();
+
             Content::where('id', $request->id)
                 ->update([
                     'category_id' => $request->category_id,
                     'title' => $request->title,
                     'desc' => $request->desc,
                 ]);
+            foreach($request['image'] as $file)
+            {
+                $fileimage   = $file->getClientOriginalExtension();
+                $nama_image = date('YmdHis') . ".$fileimage";
+                $upload_path = 'images';
+                $file->move($upload_path, $nama_image);
 
-            File::where('content_id', $contents->id)
-                ->update([
-                    'content_id' => $contents->id,
-                    'image' => $nama_image
-                ]);
+                File::where('id', $request->id)
+                    ->update([
+                        'content_id' => $contents->id,
+                        'image' => $nama_image
+                    ]);
+            }
             return redirect('contents/index');
         } else {
-            // $contents = Content::where('id', $request->id)->first();
-
-            // $contents = new Content();
-            // $contents->category_id = $request->category_id;
-            // $contents->title = $request->title;
-            // $contents->desc = $request->desc;
-            // $contents->update();
 
             Content::where('id', $request->id)
                 ->update([
+                    'category_id' => $request->category_id,
                     'title' => $request->title,
                     'desc' => $request->desc,
                 ]);
