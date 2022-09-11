@@ -86,11 +86,43 @@
                         @endforeach
                     </tbody>
                 </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination mt-2">
+                        {{ $contents->links() }}
+                    </ul>
+                </nav>
+                {{-- @if ($contents->hasPages())
+                    <nav>
+                        <ul class="pagination">
+                            <!-- Previous Page Link -->
+                            @if ($contents->onFirstPage())
+                                <li class="page-item disabled" aria-disabled="true">
+                                    <span class="page-link">@lang('pagination.previous')</span>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $contents->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a>
+                                </li>
+                            @endif
+
+                            <!-- Next Page Link -->
+                            @if ($contents->hasMorePages())
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $contents->nextPageUrl() }}" rel="next">@lang('pagination.next')</a>
+                                </li>
+                            @else
+                                <li class="page-item disabled" aria-disabled="true">
+                                    <span class="page-link">@lang('pagination.next')</span>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
+                @endif --}}
             </div>
             <!-- Modal to add new user starts-->
             <!-- Modal to add new user Ends-->
         </div>
-
+    </div>
         <!-- list section end -->
 </section>
 @endsection
@@ -217,7 +249,6 @@
                                 </div>
                                 <div class="col-sm-7">
                                     {{-- <input type="hidden" id="content_id" name="content_id" value="{{ $row->file->content_id }}"> --}}
-                                    {{-- @foreach ($row->file as $gambar) --}}
                                     @foreach ($row->file as $gambar)
                                         {{-- <input type="hidden" class="form-control" name="id" value="{{ $gambar->id }}"> --}}
                                         <input type="file" class="form-control" name="image[]" value="{{ $gambar->image }}" multiple><br>

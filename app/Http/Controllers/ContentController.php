@@ -13,7 +13,8 @@ class ContentController extends Controller
 {
     public function index()
     {
-        $contents = Content::all();
+        // $contents = Content::all();
+        $contents = Content::paginate(10);
         $categories = Category::all();
         $files = File::all();
         return view('contents/index', compact('contents', 'categories', 'files'));
@@ -35,18 +36,18 @@ class ContentController extends Controller
         if ($request->hasFile('image')) {
 
             foreach ($request['image'] as $file) {
-                $fileimage   = $file->getClientOriginalExtension();
-                $nama_image = date('YmdHis') . ".$fileimage";
+                $fileimage   = $file->getClientOriginalName();
+                // $nama_image = date('YmdHis') . ".$fileimage";
                 $upload_path = 'images';
-                $file->move($upload_path, $nama_image);
+                $file->move($upload_path, $fileimage);
 
                 $file = new File();
                 $file->content_id = $contents->id;
-                $file->image = $nama_image;
+                $file->image = $fileimage;
                 $file->save();
             }
         }
-
+        toast('Data Berhasil Ditambahkan!','success');
         return redirect('contents/index');
     }
 
@@ -59,8 +60,9 @@ class ContentController extends Controller
             'image.*' => 'image:jpeg,png,jpg'
         ]);
         // if($request->hasFile('file_image'))
-        if ($request->hasFile('image')) {
-            $contents = Content::where('id', $request->id)->first();
+        $contents = Content::where('id', $request->id)->first();
+        // if ($request->hasFile('image')) {
+            // $contents = new Content();
 
             Content::where('id', $request->id)
                 ->update([
@@ -68,35 +70,43 @@ class ContentController extends Controller
                     'title' => $request->title,
                     'desc' => $request->desc,
                 ]);
-            foreach($request['image'] as $file)
-            {
-                $fileimage   = $file->getClientOriginalExtension();
-                $nama_image = date('YmdHis') . ".$fileimage";
-                $upload_path = 'images';
-                $file->move($upload_path, $nama_image);
+            if ($request->hasFile('image')) {
+                foreach($request['image'] as $file)
+                {
 
-                File::where('id', $request->id)
+                    $fileimage   = $file->getClientOriginalExtension();
+                    // $nama_image = date('YmdHis') . ".$fileimage";
+                    $upload_path = 'images';
+                    $file->move($upload_path, $fileimage);
+
+                    File::where('id', $request->id)
+                        ->update([
+                            'content_id' => $contents->id,
+                            'image' => $fileimage
+                        ]);
+                }
+
+                toast('Data Berhasil Diubah!','info');
+                return redirect('contents/index');
+            } else {
+
+                Content::where('id', $request->id)
                     ->update([
-                        'content_id' => $contents->id,
-                        'image' => $nama_image
+                        'category_id' => $request->category_id,
+                        'title' => $request->title,
+                        'desc' => $request->desc,
                     ]);
-            }
-            return redirect('contents/index');
-        } else {
 
-            Content::where('id', $request->id)
-                ->update([
-                    'category_id' => $request->category_id,
-                    'title' => $request->title,
-                    'desc' => $request->desc,
-                ]);
-            return redirect('contents/index');
+                toast('Data Berhasil Diubah!','info');
+                return redirect('contents/index');
         }
     }
     public function destroy($id)
     {
         $contents = Content::find($id);
         $contents->delete();
+
+        toast('Data Berhasil Dihapus!','warning');
         return redirect('contents/index');
     }
 }

@@ -41,6 +41,7 @@
         <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('category/index') }}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Categories</span></a></li>
         <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('contents/index') }}"><i data-feather="camera"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Contents</span></a></li>
         <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('contents/index') }}"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Inbox</span></a></li>
+        <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('packages/index') }}"><i data-feather="dollar-sign"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Package</span></a></li>
 
         {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Master Data</span></a>
           <ul class="menu-content">

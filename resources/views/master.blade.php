@@ -55,6 +55,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" type="text/css" href="{{ asset('vuexy/vuexy/app-assets/css/plugins/charts/chart-apex.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vuexy/vuexy/app-assets/css/plugins/extensions/ext-component-toastr.min.css') }}">
     <!-- END: Page CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('vuexy/vuexy/assets/css/style.css') }}">
@@ -85,6 +86,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
         </div>
       </div>
+      @include('sweetalert::alert')
     </div>
     <!-- END: Content-->
 
@@ -254,6 +256,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('vuexy/vuexy/app-assets/vendors/js/vendors.min.js') }}"></script>
@@ -262,6 +265,14 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('vuexy/vuexy/app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
     <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{ asset('vuexy/vuexy/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js') }}"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{{ asset('vuexy/vuexy/app-assets/js/scripts/forms/form-repeater.min.js') }}"></script>
+    <!-- END: Page JS-->
 
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('vuexy/vuexy/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>

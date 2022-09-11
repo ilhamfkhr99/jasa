@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Foundation\Auth;
+// use session_name;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -17,7 +18,7 @@ class UserController extends Controller
     }
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         return view('users/index', compact('users'));
     }
 

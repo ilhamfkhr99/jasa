@@ -14,73 +14,81 @@
     <!-- users filter end -->
     <!-- list section start -->
     <div class="card">
-      <div class="card-datatable table-responsive pt-0">
-        <div id = "DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-            <div class="d-flex justify-content-between-align-items-center header-action mx-1 row mt-75">
-                <div class="col-lg-12 col-xl-6">
-                    <div id = "DataTables_Table_0_length" class="dataTables_length">
-                        <label>
-                            show
-                            <select class="custom-select form-control" name="DataTables_Table_0_length" class="dataTables_length">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>
-                            entries
-                        </label>
-                    </div>
-                </div>
-                <div class="co-lg-12 col-xl-6 pl-xl-75 pl-0">
-                    <div class="dt-action-buttons text-xl-right text-lg-left text-md-right text-left d-flex align-items-center justify-content-lg-end align-items-center flex-sm-nowrap flex-wrap mr-1">
-                        {{-- <div class=""> --}}
-                                Search
-                        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+        <div class="card-datatable table-responsive pt-0">
+            <div id = "DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                <div class="d-flex justify-content-between-align-items-center header-action mx-1 row mt-75">
+                    <div class="col-lg-12 col-xl-6">
+                        <div id = "DataTables_Table_0_length" class="dataTables_length">
                             <label>
-                                <input type="search" class="form-control" placeholder="" aria-controls="DataTables_Table_0">
+                                show
+                                <select class="custom-select form-control" name="DataTables_Table_0_length" class="dataTables_length">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                                entries
                             </label>
-                            <button type="button" class="btn btn-outline-success ml-1" data-toggle="modal" data-target="#tambah">
-                                <i data-feather="plus"></i> Tambah Data
-                            </button>
                         </div>
-                        {{-- </div> --}}
+                    </div>
+                    <div class="co-lg-12 col-xl-6 pl-xl-75 pl-0">
+                        <div class="dt-action-buttons text-xl-right text-lg-left text-md-right text-left d-flex align-items-center justify-content-lg-end align-items-center flex-sm-nowrap flex-wrap mr-1">
+                            {{-- <div class=""> --}}
+                                    Search
+                            <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                <label>
+                                    <input type="search" class="form-control" placeholder="" aria-controls="DataTables_Table_0">
+                                </label>
+                                <button type="button" class="btn btn-outline-success ml-1" data-toggle="modal" data-target="#tambah">
+                                    <i data-feather="plus"></i> Tambah Data
+                                </button>
+                            </div>
+                            {{-- </div> --}}
 
-                        {{-- <div class="dt-buttons btn-group flex-wrap">
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#tambah">
-                                Tambah Data
-                            </button>
-                        </div> --}}
+                            {{-- <div class="dt-buttons btn-group flex-wrap">
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#tambah">
+                                    Tambah Data
+                                </button>
+                            </div> --}}
+                        </div>
                     </div>
                 </div>
-            </div>
-        <table class="user-list-table table">
-          <thead class="thead-light">
-            <tr>
-                <th>No</th>
-                <th>Nama Category</th>
-                <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($category as $row)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $row->name }}</td>
-                <td>
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#edit-{{ $row->id }}"><i data-feather="edit"></i>Edit</button>
-                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#hapus-{{ $row->id }}"><i data-feather="trash-2"></i>Hapus</button>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-        </table>
-      </div>
-      <!-- Modal to add new user starts-->
-      <!-- Modal to add new user Ends-->
+            <table class="user-list-table table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Category</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($category as $row)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $row->name }}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#edit-{{ $row->id }}"><i data-feather="edit"></i>Edit</button>
+                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#hapus-{{ $row->id }}"><i data-feather="trash-2"></i>Hapus</button>
+                            <a href="{{ url('category/'.$row->id.'/abouts-index') }}" class="btn btn-outline-warning" ><i data-feather="search"></i>Detail</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination mt-2">
+                    {{ $category->links() }}
+                </ul>
+            </nav>
+        </div>
+        <!-- Modal to add new user starts-->
+        <!-- Modal to add new user Ends-->
+        </div>
+        @include('sweetalert::alert')
     </div>
 
     <!-- list section end -->
-  </section>
+</section>
 @endsection
 
 <div class="modal fade text-left" id="tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
