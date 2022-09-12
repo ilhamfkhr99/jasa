@@ -34,26 +34,26 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/beranda', [App\Http\Controllers\HomeController::class, 'index'])->name('beranda');
 
-Route::get('users/index', [UserController::class, 'index']);
-Route::post('users-add', [UserController::class, 'store']);
-Route::patch('users-update', [UserController::class, 'update']);
-Route::delete('users/{id}', [UserController::class, 'destroy']);
+Route::get('users/index', [UserController::class, 'index'])->name('users/index');
+Route::post('users-add', [UserController::class, 'store'])->name('users-add');
+Route::patch('users-update', [UserController::class, 'update'])->name('users-update');
+Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users-delete');
 
-Route::get('category/index', [CategoryController::class, 'index']);
-Route::get('category/{id}/abouts-index', [CategoryController::class, 'show']);
-Route::post('category/{id}/abouts-add', [CategoryController::class, 'about_store']);
-Route::patch('category/{id}/abouts-update', [CategoryController::class, 'about_update']);
-Route::delete('category/{id}/{id_about}', [CategoryController::class, 'about_destroy']);
-Route::post('category-add', [CategoryController::class, 'store']);
+Route::get('category/index', [CategoryController::class, 'index'])->name('category/index');
+Route::get('category/{id}/abouts-index', [CategoryController::class, 'show'])->name('abouts/index');
+Route::post('category/{id}/abouts-add', [CategoryController::class, 'about_store'])->name('abouts-add');
+Route::patch('category/{id}/abouts-update', [CategoryController::class, 'about_update'])->name('abouts-update');
+Route::delete('category/{id}/{id_about}', [CategoryController::class, 'about_destroy'])->name('abouts-destroy');
+Route::post('category-add', [CategoryController::class, 'store'])->name('category-add');
 Route::patch('category-update', [CategoryController::class, 'update'])->name('category-update');
-Route::delete('category/{id}', [CategoryController::class, 'destroy']);
+Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category-delete');
 
-Route::get('contents/index', [ContentController::class, 'index']);
-Route::post('contents-add', [ContentController::class, 'store']);
-Route::patch('contents-update', [ContentController::class, 'update']);
-Route::delete('contents/{id}', [ContentController::class, 'destroy']);
+Route::get('contents/index', [ContentController::class, 'index'])->name('contents/index');
+Route::post('contents-add', [ContentController::class, 'store'])->name('contents-add');
+Route::patch('contents-update', [ContentController::class, 'update'])->name('contents-update');
+Route::delete('contents/{id}', [ContentController::class, 'destroy'])->name('contents-delete');
 
-Route::get('packages/index', [PackageController::class, 'index']);
-Route::post('packages-add', [PackageController::class, 'store']);
-Route::patch('packages-update', [PackageController::class, 'update']);
-Route::delete('packages/{id}', [PackageController::class, 'destroy']);
+Route::get('packages/index', [PackageController::class, 'index'])->name('packages/index');
+Route::post('packages-add', [PackageController::class, 'store'])->name('packages-add');
+Route::patch('packages-update', [PackageController::class, 'update'])->name('packages-update');
+Route::delete('packages/{id}', [PackageController::class, 'destroy'])->name('packages-delete');

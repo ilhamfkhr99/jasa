@@ -33,46 +33,16 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
       <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-        <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('beranda') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Beranda</span><span class="badge badge-light-warning badge-pill ml-auto mr-1">2</span></a>
+        <li class=" nav-item {{ Request::is('beranda') ? 'active':'' }}"><a class="d-flex align-items-center" href="{{ route('beranda') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Beranda</span><span class="badge badge-light-warning badge-pill ml-auto mr-1">2</span></a>
         </li>
         <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
         </li>
-        <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('users/index') }}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Users</span></a></li>
-        <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('category/index') }}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Categories</span></a></li>
-        <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('contents/index') }}"><i data-feather="camera"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Contents</span></a></li>
-        <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('contents/index') }}"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Inbox</span></a></li>
-        <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('packages/index') }}"><i data-feather="dollar-sign"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Package</span></a></li>
+        <li class=" nav-item {{ Request::is('users/index') ? 'active':'' }}"><a class="d-flex align-items-center" href="{{ route('users/index') }}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Users</span></a></li>
+        <li class=" nav-item {{ Request::is('category/index') ? 'active':'' }}"><a class="d-flex align-items-center" href="{{ route('category/index') }}"><i data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Categories</span></a></li>
+        <li class=" nav-item {{ Request::is('contents/index') ? 'active':'' }}"><a class="d-flex align-items-center" href="{{ route('contents/index') }}"><i data-feather="camera"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Contents</span></a></li>
+        <li class=" nav-item {{ Request::is('inbox/index') ? 'active':'' }}"><a class="d-flex align-items-center" href="{{ url('inbox/index') }}"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Inbox</span></a></li>
+        <li class=" nav-item {{ Request::is('packages/index') ? 'active':'' }}"><a class="d-flex align-items-center" href="{{ route('packages/index') }}"><i data-feather="dollar-sign"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Package</span></a></li>
 
-        {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Master Data</span></a>
-          <ul class="menu-content">
-            <li><a class="d-flex align-items-center" href="{{ url('karyawan/index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Karyawan</span></a>
-            </li>
-            <li><a class="d-flex align-items-center" href="{{ url('pembeli/index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Pembeli</span></a>
-            </li>
-            <li><a class="d-flex align-items-center" href="{{ url('supplier/index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Edit">Supplier</span></a>
-            </li>
-            <li><a class="d-flex align-items-center" href="{{ url('barang/index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Barang</span></a>
-            </li>
-            <li><a class="d-flex align-items-center" href="app-invoice-add.html"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">User</span></a>
-            </li>
-          </ul>
-        </li> --}}
-        {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="shopping-cart"></i><span class="menu-title text-truncate" data-i18n="eCommerce">Transaksi</span></a>
-          <ul class="menu-content">
-            <li><a class="d-flex align-items-center" href="{{ url('pembelian/index') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">Pembelian</span></a>
-            </li>
-            <li><a class="d-flex align-items-center" href="app-ecommerce-details.html"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Details">Penjualan</span></a>
-            </li>
-          </ul>
-        </li> --}}
-        {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Laporan</span></a>
-          <ul class="menu-content">
-            <li><a class="d-flex align-items-center" href="app-user-list.html"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Laporan Penjualan</span></a>
-            </li>
-            <li><a class="d-flex align-items-center" href="app-user-view.html"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="View">Laporan Pembelian</span></a>
-            </li>
-          </ul>
-        </li> --}}
         <li class=" navigation-header"><span data-i18n="User Interface">User Interface</span><i data-feather="more-horizontal"></i>
         </li>
       </ul>
