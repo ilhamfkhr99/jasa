@@ -15,7 +15,7 @@ class PackageController extends Controller
         // $packages = Package_detail::with('package')->get();
         // $packages = Package::all();
         // dd($packages);
-        $packages = Package::paginate(10);
+        $packages = Package::with('package_details')->paginate(10);
         // dd($packages);
         // $details = Package_detail::where('package_id', $request->package_id)->get();
         return view('packages/index', compact('packages'));

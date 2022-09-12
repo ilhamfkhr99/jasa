@@ -62,8 +62,10 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->title }}</td>
                             <td>{{ $row->price }}</a></td>
-                            <td>{{ $row->desc }}</td>
-                            {{-- <td>{{ $row->package_details->desc }}</td> --}}
+                            <td>
+                                @foreach ($row->package_details  as $item)
+                                {{$item->desc}}
+                            @endforeach</td>
                             <td>
                                 <button type="button" class="btn btn-outline-primary edit" data-toggle="modal" data-dad="{{ $row }}"><i data-feather="edit"></i>Edit</button>
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#hapus-{{ $row->id }}"><i data-feather="trash-2"></i>Hapus</button>

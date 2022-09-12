@@ -9,10 +9,12 @@ class Package extends Model
 {
     use HasFactory;
 
+    protected $table = 'packages';
+
     protected $fillable = ['title', 'price'];
 
     public function package_details()
     {
-        return $this->hasMany(Package_detail::class);
+        return $this->hasMany(Package_detail::class,'package_id','id');
     }
 }
